@@ -1,38 +1,38 @@
 Case
 
-When[Dim Date].[HierarchyFiscalYearSemesterQuarter].CurrentMember.Level Is[DimDate].[HierarchyFiscalYearSemesterQuarter].[(All)]
+When[Dim Date].[Hierarchy Fiscal Year Semester Quarter].CurrentMember.Level Is[Dim Date].[Hierarchy Fiscal Year Semester Quarter].[(All)]
 Then "NA"
 
 When IsEmpty
   (
     (
       ParallelPeriod(
-        [DimDate].[HierarchyFiscalYearSemesterQuarter].[Fiscal Year], 1,
-        [DimDate].[HierarchyFiscalYearSemesterQuarter].CurrentMember
+        [Dim Date].[Hierarchy Fiscal Year Semester Quarter].[Fiscal Year], 1,
+        [Dim Date].[Hierarchy Fiscal Year Semester Quarter].CurrentMember
       ),
-      [Measures].[UnitsBalance]
+      [Measures].[Units Balance]
     )
   )
 Then Null
 Else(
-    ([DimDate].[HierarchyFiscalYearSemesterQuarter].CurrentMember,
-      [Measures].[UnitsBalance]) -
+    ([Dim Date].[Hierarchy Fiscal Year Semester Quarter].CurrentMember,
+      [Measures].[Units Balance]) -
     (
       ParallelPeriod(
-        [DimDate].[HierarchyFiscalYearSemesterQuarter].[FiscalYear],
+        [Dim Date].[Hierarchy Fiscal Year Semester Quarter].[Fiscal Year],
         1,
-        [DimDate].[HierarchyFiscalYearSemesterQuarter].CurrentMember
+        [Dim Date].[Hierarchy Fiscal Year Semester Quarter].CurrentMember
       ),
-      [Measures].[UnitsBalance]
+      [Measures].[Units Balance]
     )
   )
   /
   (
     ParallelPeriod(
-      [DimDate].[HierarchyFiscalYearSemesterQuarter].[FiscalYear],
+      [Dim Date].[Hierarchy Fiscal Year Semester Quarter].[Fiscal Year],
       1,
-      [DimDate].[HierarchyFiscalYearSemesterQuarter].CurrentMember
+      [Dim Date].[Hierarchy Fiscal Year Semester Quarter].CurrentMember
     ),
-    [Measures].[UnitsBalance]
+    [Measures].[Units Balance]
   )
 End
