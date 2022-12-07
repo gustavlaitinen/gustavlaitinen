@@ -1,9 +1,7 @@
 Case
 
-When [Dim Date].[Hierarchy Fiscal Year Semester
-Quarter ].CurrentMember.Level Is
-[Dim Date].[Hierarchy Fiscal Year Semester Quarter].
-[(All))
+When [Dim Date].[HierarchyFiscalYearSemesterQuarter].CurrentMember.Level Is
+[DimDate].[HierarchyFiscalYearSemesterQuarter].[(All)]
 Then "NA"
 
 When IsEmpty
@@ -11,41 +9,35 @@ When IsEmpty
 (
 ParallelPeriod
 (
-[Dim Date].[Hierarchy Fiscal Year Semester Quarter].
-[Fiscal Year),
-1,
-[Dim Date].[Hierarchy Fiscal Year Semester
-Quarter ].CurrentMember
+[DimDate].[HierarchyFiscalYearSemesterQuarter].[Fiscal Year],1,
+[DimDate].[HierarchyFiscalYearSemesterQuarter].CurrentMember
 ),
-[Measures].[Units Balance]
+[Measures].[UnitsBalance]
 )
 )
 Then Null
 Else (
-( [Dim Date].[Hierarchy Fiscal Year Semester
-Quarter].CurrentMember,
-[Measures].[Units Balance])
-ParallelPeriod
-(
-[Dim Date].[Hierarchy Fiscal Year Semester Quarter].
-[Fiscal Year],
-1,
-[Dim Date].[Hierarchy Fiscal Year Semester
-Quarter).CurrentMember
-),
-[Measures].[Units Balance]
-)
-)
-I
+([DimDate].[HierarchyFiscalYearSemesterQuarter].CurrentMember,
+[Measures].[UnitsBalance])
+-
 (
 ParallelPeriod
 (
-[Dim Date].[Hierarchy Fiscal Year Semester Quarter].
-[Fiscal Year],
+[DimDate].[HierarchyFiscalYearSemesterQuarter].[FiscalYear],
 1,
-[Dim Date].[Hierarchy Fiscal Year Semester
-Quarter]. CurrentMember
+[DimDate].[HierarchyFiscalYearSemesterQuarter].CurrentMember
 ),
-[Measures].[Units Balance]
+[Measures].[UnitsBalance]
+)
+)
+/
+(
+ParallelPeriod
+(
+[DimDate].[HierarchyFiscalYearSemesterQuarter].[FiscalYear],
+1,
+[DimDate].[HierarchyFiscalYearSemesterQuarter].CurrentMember
+),
+[Measures].[UnitsBalance]
 )
 End
