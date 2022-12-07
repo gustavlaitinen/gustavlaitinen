@@ -1,0 +1,7 @@
+SELECT {[Measures].[Units In], [Measures].[Units
+Out]} on Columns,
+[Dim Product].[Model Name].[Model Name] on
+rows
+FROM [Lab DW]
+WHERE [Dim Date].[HierarchyYear Semester
+Quarter].[Calendar Year].&[ 2007]
